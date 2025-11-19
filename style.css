@@ -1,0 +1,201 @@
+@import url('https://fonts.cdnfonts.com/css/lemonmilk');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  color: #f5f5f5;
+  background: #020202;
+}
+
+.background-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.background-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.4));
+  z-index: -1;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.glass-box {
+  position: relative;
+  width: min(90vw, 720px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(20, 24, 28, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(1.5px);
+  padding: 60px 40px 40px;
+}
+
+.glass-box__title {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  padding: 0.25rem 0;
+  font-family: 'LEMON MILK', 'Segoe UI', sans-serif;
+  font-size: clamp(3rem, 8vw, 4.6rem);
+  font-weight: 700;
+  letter-spacing: 0.18rem;
+  text-transform: capitalize;
+  color: transparent;
+  background-image: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.2),
+    #ffffff,
+    rgba(255, 255, 255, 0.2)
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: title-shine 4s linear infinite;
+  text-shadow: 0 12px 35px rgba(0, 0, 0, 0.55);
+}
+
+.glass-box__content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* From Uiverse.io by Baimyrzaev */
+.neon-button {
+  flex: 1 1 220px;
+  max-width: 260px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  border: none;
+  font-size: 18px;
+  position: relative;
+  transition: 500ms;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.neon-button span {
+  color: rgba(255, 255, 255, 0.85);
+  position: relative;
+  transition: 500ms;
+  transition-delay: 500ms;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 600;
+}
+
+.neon-button::before {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 0%;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  transition: 500ms;
+  transition-delay: 500ms;
+  background-color: #ff004c;
+  box-shadow: 0 0 10px #ff004c, 0 0 30px #ff004c, 0 0 50px #ff004c;
+}
+
+.neon-button div {
+  transition: 500ms;
+  position: absolute;
+  background-color: #ff004c;
+  box-shadow: 0 0 15px #ff004c, 0 0 30px #ff004c, 0 0 50px #ff004c;
+}
+
+.neon-button .top {
+  width: 18px;
+  height: 2px;
+  top: 0;
+  left: 0;
+}
+
+.neon-button .bottom {
+  width: 18px;
+  height: 2px;
+  bottom: 0;
+  right: 0;
+}
+
+.neon-button .left {
+  width: 2px;
+  height: 18px;
+  top: 0;
+  left: 0;
+}
+
+.neon-button .right {
+  width: 2px;
+  height: 18px;
+  bottom: 0;
+  right: 0;
+}
+
+.neon-button:hover span {
+  color: #000;
+}
+
+.neon-button:hover::before {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.neon-button:hover .top,
+.neon-button:hover .bottom {
+  width: 100%;
+}
+
+.neon-button:hover .left,
+.neon-button:hover .right {
+  height: 100%;
+}
+
+@keyframes title-shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+

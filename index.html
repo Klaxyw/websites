@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klaxy</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <video class="background-video" autoplay loop muted playsinline>
+      <source src="background.mp4" type="video/mp4" />
+      Tarayıcınız video unsurunu desteklemiyor.
+    </video>
+    <div class="background-overlay"></div>
+
+    <section class="hero">
+      <div class="glass-box">
+        <div class="glass-box__title">Klaxy</div>
+        <div class="glass-box__content">
+          
+          <div class="button-row">
+            <button class="neon-button">
+              <span>MY CONNECTIONS</span>
+              <div class="top"></div>
+              <div class="left"></div>
+              <div class="bottom"></div>
+              <div class="right"></div>
+            </button>
+            <a
+              class="neon-button"
+              href="https://guns.lol/klaxy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>MY WEBSITES</span>
+              <div class="top"></div>
+              <div class="left"></div>
+              <div class="bottom"></div>
+              <div class="right"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.addEventListener(
+        'contextmenu',
+        function (event) {
+          event.preventDefault();
+        },
+        { capture: true }
+      );
+
+      function blockKeys(event) {
+        const key = (event.key || '').toUpperCase();
+        if (key === 'F12' || event.keyCode === 123) {
+          event.preventDefault();
+          event.stopPropagation();
+          return false;
+        }
+        if (event.ctrlKey && event.shiftKey && ['I', 'J', 'C'].includes(key)) {
+          event.preventDefault();
+          event.stopPropagation();
+          return false;
+        }
+        if (event.ctrlKey && key === 'U') {
+          event.preventDefault();
+          event.stopPropagation();
+          return false;
+        }
+        return true;
+      }
+
+      window.addEventListener('keydown', blockKeys, true);
+      window.addEventListener('keypress', blockKeys, true);
+    </script>
+  </body>
+</html>
+
