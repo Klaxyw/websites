@@ -1,202 +1,383 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700&display=swap');
-
-*,
-*::before,
-*::after {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  color: #f5f5f5;
-  background: #020202;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.background-video {
+#bg-video {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: -2;
-}
-
-.background-overlay {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.4));
+  object-fit: cover; /* ekranı doldur, yanları kırp */
   z-index: -1;
+  background: #000;
 }
 
-.hero {
-  min-height: 100vh;
+.content {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 20px;
-}
-
-.glass-box {
-  position: relative;
-  width: min(90vw, 720px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(20, 24, 28, 0.35);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(1.5px);
-  padding: 60px 40px 40px;
-}
-
-.glass-box__title {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -60%);
-  padding: 0.25rem 0;
-  font-family: 'Sora', 'LEMON MILK', sans-serif;
-  font-size: clamp(3rem, 8vw, 4.6rem);
-  font-weight: 700;
-  letter-spacing: 0.08rem;
-  text-transform: none;
-  line-height: 1;
-  color: transparent;
-  background-image: linear-gradient(
-    110deg,
-    rgba(255, 255, 255, 0.2),
-    #ffffff,
-    rgba(255, 255, 255, 0.2)
-  );
-  background-size: 250% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: title-shine 4s linear infinite;
-  text-shadow: 0 12px 35px rgba(0, 0, 0, 0.55);
-}
-
-.glass-box__content {
   text-align: center;
+  padding: 1rem;
+  
+}
+
+.logo-wrapper {
+  position: relative;
+  transform: translateY(-5%); /* ortanın biraz üstü */
+}
+
+.logo-avatar {
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 12px;
+  display: block; 
+}
+
+.logo-text {
+  background-image: url(sparkle_black.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%; /* sadece yazının kutusunu kaplasın */
+  display: inline-block;      /* blok genişliğini yazıya göre sınırla */
+  font-size: 39.5px;
+  font-weight: 600; /* daha ince görünüm */
+  letter-spacing: 0.01em;
+  color: #000000; /* siyah yazı */
+  -webkit-text-stroke: 0;
+  text-shadow: 0 0 16.5px rgba(0, 0, 0, 0.9); /* kelimelerin arkasına siyah gölge */
+}
+
+.social-links {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 6px; /* ikonlar arasındaki mesafeyi biraz azalt */
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;   /* ikonları biraz daha büyük göster */
+  height: 44px;
+  border-radius: 50%;
+  text-decoration: none;
+  background: transparent;              /* gri daireyi kaldır */
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, filter 0.15s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+}
+
+/* Discord için arka planı kaldır */
+.social-link.discord {
+  background: transparent;
+  border-color: transparent;
+  position: relative; /* tooltip için referans */
+}
+
+/* Spotify & YouTube da arka plansız, sadece ikon */
+.social-link.spotify,
+.social-link.youtube {
+  background: transparent;
+  border-color: transparent;
+}
+
+.social-link img {
+  width: 36px;
+  height: 36px;
+  display: block;
+  filter:
+    invert(1)
+    brightness(1.2)
+    drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)); /* hafif beyaz parıltı ve beyaza çevirme */
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.social-link:hover img {
+  transform: scale(1.05);
+  filter:
+    invert(1)
+    brightness(1.4)
+    drop-shadow(0 0 8px rgba(255, 255, 255, 0.7)); /* biraz daha güçlü ama abartısız parlama */
+}
+
+/* Discord SVG ikonu da PNG'lerle aynı boyutta ve parlaklıkta olsun */
+.social-link.discord svg {
+  width: 44px;
+  height: 44px;
+  display: block;
+  color: #ffffff; /* beyaz ikon */
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)); /* etrafında hafif beyaz parlama kalsın */
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.social-link.discord:hover svg {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+}
+
+/* Spotify SVG ikonu da aynı ayarlar */
+.social-link.spotify svg {
+  width: 44px;
+  height: 44px;
+  display: block;
+  color: #ffffff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.social-link.spotify:hover svg {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+}
+
+/* YouTube SVG ikonu da aynı ayarlar */
+.social-link.youtube svg {
+  width: 44px;
+  height: 44px;
+  display: block;
+  color: #ffffff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.social-link.youtube:hover svg {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+}
+
+.tooltip-discord {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;              /* kutuyu biraz büyüt */
+  border-radius: 10px;
+  background: rgba(200, 200, 200, 0.15); /* gri, şeffaf */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f5f5f5;
+  font-size: 11px;                /* yazıyı biraz büyüt */
+  letter-spacing: 0.06em;
+  text-transform: none;
+  font-weight: 700;               /* daha kalın yazı */
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.social-link.discord:hover .tooltip-discord {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+/* Yeni şeffaf blurlu player */
+.player-glass {
+  margin-top: 10px;
+  position: relative;
+  width: 310px;
+  height: 90px;
+  background: rgba(120, 120, 120, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 32px;
 }
 
-.button-row {
+.player-info {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.player-bars {
+  position: absolute;
+  left: 6px;
+  bottom: 36px; /* beyaz çizginin biraz üstünde */
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  flex-wrap: wrap;
 }
 
-/* From Uiverse.io by Baimyrzaev */
-.neon-button {
-  flex: 1 1 220px;
-  max-width: 260px;
-  display: inline-flex;
+.player-bars .playing {
+  gap: 2px;
+  width: 44px;
+  height: 28px;
+}
+
+.player-bars .greenline {
+  height: 26px;
+  width: 3px;
+}
+
+.player-title {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-artist {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  font-weight: 500;
+  margin: 2px 0 0 0;
+}
+
+.player-progress {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 28px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.player-progress-fill {
+  width: 42%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 2px;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.player-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.15s, transform 0.15s;
+}
+
+.player-btn:hover {
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.player-btn-play {
+  color: #fff;
+}
+
+.player-time, .player-time-end {
+  position: absolute;
+  bottom: 8px;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.player-time {
+  left: 14px;
+}
+
+.player-time-end {
+  right: 14px;
+}
+
+/* Eski kart stilleri (yedek) */
+/*
+.card { ... }
+.top { ... }
+.pfp { ... }
+...
+*/
+
+.playing {
+  display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
-  padding: 22px 0;
-  background-color: rgba(0, 0, 0, 0.65);
-  border: none;
-  font-size: 18px;
-  position: relative;
-  transition: 500ms;
-  cursor: pointer;
-  text-decoration: none;
+  gap: 1px;
+  width: 30px;
+  height: 20px;
+  
 }
 
-.neon-button span {
-  color: rgba(255, 255, 255, 0.85);
-  position: relative;
-  transition: 500ms;
-  transition-delay: 500ms;
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-weight: 600;
-}
-
-.neon-button::before {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 0%;
-  left: 50%;
-  right: 50%;
-  top: 50%;
-  bottom: 50%;
-  transition: 500ms;
-  transition-delay: 500ms;
-  background-color: #ff004c;
-  box-shadow: 0 0 10px #ff004c, 0 0 30px #ff004c, 0 0 50px #ff004c;
-}
-
-.neon-button div {
-  transition: 500ms;
-  position: absolute;
-  background-color: #ff004c;
-  box-shadow: 0 0 15px #ff004c, 0 0 30px #ff004c, 0 0 50px #ff004c;
-}
-
-.neon-button .top {
-  width: 18px;
-  height: 2px;
-  top: 0;
-  left: 0;
-}
-
-.neon-button .bottom {
-  width: 18px;
-  height: 2px;
-  bottom: 0;
-  right: 0;
-}
-
-.neon-button .left {
+.greenline {
+  background-color: #1db954;
+  height: 20px;
   width: 2px;
-  height: 18px;
-  top: 0;
-  left: 0;
+  position: relative;
+  transform-origin: bottom;
 }
 
-.neon-button .right {
-  width: 2px;
-  height: 18px;
-  bottom: 0;
-  right: 0;
+.line-1 {
+  animation: infinite playing 1s ease-in-out;
+  animation-delay: 0.2s;
 }
 
-.neon-button:hover span {
-  color: #000;
+.line-2 {
+  animation: infinite playing 1s ease-in-out;
+  animation-delay: 0.5s;
 }
 
-.neon-button:hover::before {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.line-3 {
+  animation: infinite playing 1s ease-in-out;
+  animation-delay: 0.6s;
 }
 
-.neon-button:hover .top,
-.neon-button:hover .bottom {
-  width: 100%;
+.line-4 {
+  animation: infinite playing 1s ease-in-out;
+  animation-delay: 0s;
 }
 
-.neon-button:hover .left,
-.neon-button:hover .right {
-  height: 100%;
+.line-5 {
+  animation: infinite playing 1s ease-in-out;
+  animation-delay: 0.4s;
 }
 
-@keyframes title-shine {
+@keyframes playing {
   0% {
-    background-position: -200% 0;
+    transform: scaleY(0.1);
   }
+
+  33% {
+    transform: scaleY(0.6);
+  }
+
+  66% {
+    transform: scaleY(0.9);
+  }
+
   100% {
-    background-position: 200% 0;
+    transform: scaleY(0.1);
   }
 }
 
