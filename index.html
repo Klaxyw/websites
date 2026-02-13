@@ -1,79 +1,90 @@
 <!DOCTYPE html>
 <html lang="tr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Klaxy</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <video class="background-video" autoplay loop muted playsinline>
-      <source src="background.mp4" type="video/mp4" />
-      Tarayıcınız video unsurunu desteklemiyor.
-    </video>
-    <div class="background-overlay"></div>
+<head>
+  <meta charset="UTF-8">
+  <title>klaxy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="aesthetic.mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+  </video>
 
-    <section class="hero">
-      <div class="glass-box">
-        <div class="glass-box__title">Klaxy</div>
-        <div class="glass-box__content">
-          
-          <div class="button-row">
-            <button class="neon-button">
-              <span>MY CONNECTIONS</span>
-              <div class="top"></div>
-              <div class="left"></div>
-              <div class="bottom"></div>
-              <div class="right"></div>
-            </button>
-            <a
-              class="neon-button"
-              href="https://guns.lol/klaxy"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>MY WEBSITES</span>
-              <div class="top"></div>
-              <div class="left"></div>
-              <div class="bottom"></div>
-              <div class="right"></div>
-            </a>
+  <div class="content">
+    <div class="logo-wrapper">
+      <img src="pp.png" alt="Profil fotoğrafı" class="logo-avatar">
+      <h1 class="logo-text">klaxy</h1>
+
+      
+      <!-- Yeni şeffaf blurlu player -->
+      <div class="player-glass">
+        <div class="player-info">
+          <p class="player-title">Bana Sor</p>
+          <p class="player-artist">Era7capone, Şam</p>
+        </div>
+        <div class="player-bars">
+          <div class="playing">
+            <div class="greenline line-1"></div>
+            <div class="greenline line-2"></div>
+            <div class="greenline line-3"></div>
+            <div class="greenline line-4"></div>
+            <div class="greenline line-5"></div>
           </div>
         </div>
+        <div class="player-progress">
+          <div class="player-progress-fill"></div>
+        </div>
+        <div class="player-controls">
+          <button class="player-btn" aria-label="Önceki">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 21.6a9.6 9.6 0 1 0 0-19.2 9.6 9.6 0 0 0 0 19.2Zm.848-12.352a1.2 1.2 0 0 0-1.696-1.696l-3.6 3.6a1.2 1.2 0 0 0 0 1.696l3.6 3.6a1.2 1.2 0 0 0 1.696-1.696L11.297 13.2H15.6a1.2 1.2 0 1 0 0-2.4h-4.303l1.551-1.552Z" clip-rule="evenodd"></path></svg>
+          </button>
+          <button class="player-btn player-btn-play" aria-label="Oynat">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M21.6 12a9.6 9.6 0 1 1-19.2 0 9.6 9.6 0 0 1 19.2 0ZM10.2 8.4v7.2l6-3.6-6-3.6Z" clip-rule="evenodd"></path></svg>
+          </button>
+          <button class="player-btn" aria-label="Sonraki">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 21.6a9.6 9.6 0 1 0 0-19.2 9.6 9.6 0 0 0 0 19.2Zm4.448-10.448-3.6-3.6a1.2 1.2 0 0 0-1.696 1.696l1.551 1.552H8.4a1.2 1.2 0 1 0 0 2.4h4.303l-1.551 1.552a1.2 1.2 0 1 0 1.696 1.696l3.6-3.6a1.2 1.2 0 0 0 0-1.696Z" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+        <span class="player-time">1:31</span>
+        <span class="player-time-end">3:46</span>
       </div>
-    </section>
-    <script>
-      document.addEventListener(
-        'contextmenu',
-        function (event) {
-          event.preventDefault();
-        },
-        { capture: true }
-      );
 
-      function blockKeys(event) {
-        const key = (event.key || '').toUpperCase();
-        if (key === 'F12' || event.keyCode === 123) {
-          event.preventDefault();
-          event.stopPropagation();
-          return false;
-        }
-        if (event.ctrlKey && event.shiftKey && ['I', 'J', 'C'].includes(key)) {
-          event.preventDefault();
-          event.stopPropagation();
-          return false;
-        }
-        if (event.ctrlKey && key === 'U') {
-          event.preventDefault();
-          event.stopPropagation();
-          return false;
-        }
-        return true;
-      }
+      
 
-      window.addEventListener('keydown', blockKeys, true);
-      window.addEventListener('keypress', blockKeys, true);
-    </script>
-  </body>
+      <div class="social-links">
+        <a href="#" class="social-link discord" aria-label="Discord">
+          <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M14.82 4.26a10.14 10.14 0 0 0-.53 1.1a14.66 14.66 0 0 0-4.58 0a10.14 10.14 0 0 0-.53-1.1a16 16 0 0 0-4.13 1.3a17.33 17.33 0 0 0-3 11.59a16.6 16.6 0 0 0 5.07 2.59A12.89 12.89 0 0 0 8.23 18a9.65 9.65 0 0 1-1.71-.83a3.39 3.39 0 0 0 .42-.33a11.66 11.66 0 0 0 10.12 0q.21.18.42.33a10.84 10.84 0 0 1-1.71.84a12.41 12.41 0 0 0 1.08 1.78a16.44 16.44 0 0 0 5.06-2.59a17.22 17.22 0 0 0-3-11.59a16.09 16.09 0 0 0-4.09-1.35zM8.68 14.81a1.94 1.94 0 0 1-1.8-2a1.93 1.93 0 0 1 1.8-2a1.93 1.93 0 0 1 1.8 2a1.93 1.93 0 0 1-1.8 2zm6.64 0a1.94 1.94 0 0 1-1.8-2a1.93 1.93 0 0 1 1.8-2a1.92 1.92 0 0 1 1.8 2a1.92 1.92 0 0 1-1.8 2z"></path>
+          </svg>
+          <span class="tooltip-discord">Copy Discord</span>
+        </a>
+        <a href="https://github.com/Klaxyw" class="social-link spotify" aria-label="GitHub">
+          <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" fill-rule="evenodd" d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974c0 4.406 2.857 8.145 6.821 9.465c.499.09.679-.217.679-.481c0-.237-.008-.865-.011-1.696c-2.775.602-3.361-1.338-3.361-1.338c-.452-1.152-1.107-1.459-1.107-1.459c-.905-.619.069-.605.069-.605c1.002.07 1.527 1.028 1.527 1.028c.89 1.524 2.336 1.084 2.902.829c.091-.645.351-1.085.635-1.334c-2.214-.251-4.542-1.107-4.542-4.93c0-1.087.389-1.979 1.024-2.675c-.101-.253-.446-1.268.099-2.64c0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336a9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021c.545 1.372.203 2.387.099 2.64c.64.696 1.024 1.587 1.024 2.675c0 3.833-2.33 4.675-4.552 4.922c.355.308.675.916.675 1.846c0 1.334-.012 2.41-.012 2.737c0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974C22 6.465 17.535 2 12.026 2z" clip-rule="evenodd"></path>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@Klaxyqw" class="social-link youtube" aria-label="YouTube">
+          <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M21.593 7.203a2.506 2.506 0 0 0-1.762-1.766C18.265 5.007 12 5 12 5s-6.264-.007-7.831.404a2.56 2.56 0 0 0-1.766 1.778c-.413 1.566-.417 4.814-.417 4.814s-.004 3.264.406 4.814c.23.857.905 1.534 1.763 1.765c1.582.43 7.83.437 7.83.437s6.265.007 7.831-.403a2.515 2.515 0 0 0 1.767-1.763c.414-1.565.417-4.812.417-4.812s.02-3.265-.407-4.831zM9.996 15.005l.005-6l5.207 3.005l-5.212 2.995z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.social-link.discord').addEventListener('click', function(e) {
+      e.preventDefault();
+      const tooltip = this.querySelector('.tooltip-discord');
+      navigator.clipboard.writeText('klaxy._.').then(function() {
+        tooltip.textContent = 'Copied';
+        setTimeout(function() { tooltip.textContent = 'Copy Discord'; }, 1500);
+      });
+    });
+  </script>
+</body>
 </html>
-
